@@ -6,7 +6,7 @@ DoctorAppointments is a web application for managing doctor appointments. It is 
 
 ### Prerequisites
 
-- Ruby (version 3.0 or higher)
+- Ruby (version 3.1 or higher)
 - PostgreSQL
 - Node.js (for asset management)
 
