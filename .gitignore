@@ -1,4 +1,6 @@
 .env*.local
+.env.development
+.env.test
 log/*
 public/
 node_modules/

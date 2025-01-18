@@ -9,9 +9,14 @@ gem "hanami-db", "~> 2.2"
 gem "hanami-router", "~> 2.2"
 gem "hanami-validations", "~> 2.2"
 gem "hanami-view", "~> 2.2"
+gem "rom"
+gem "rom-sql"
+gem "pg"
 
 gem "dry-types", "~> 1.7"
+gem "dry-validation"
 gem "dry-operation"
+gem "zeitwerk"
 gem "puma"
 gem "rake"
 gem "sqlite3"
@@ -22,6 +27,11 @@ end
 
 group :development, :test do
   gem "dotenv"
+  gem "database_cleaner-sequel"
+  gem "faker"
+  # Web integration
+  gem "capybara"
+  gem "rack-test"
 end
 
 group :cli, :development do
@@ -30,13 +40,4 @@ end
 
 group :cli, :development, :test do
   gem "hanami-rspec", "~> 2.2"
-end
-
-group :test do
-  # Database
-  gem "database_cleaner-sequel"
-
-  # Web integration
-  gem "capybara"
-  gem "rack-test"
 end
