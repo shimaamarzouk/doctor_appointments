@@ -13,3 +13,21 @@
 #
 #   categories = Hanami.app["relations.categories"]
 #   categories.insert(title: "General")
+
+Hanami.app.prepare(:persistence)
+
+# Clear existing records
+doctors = Hanami.app["persistence.rom"].relations[:doctors]
+doctors.delete
+
+# Create default doctors
+default_doctors = [
+  { name: "Dr. John Smith" },
+]
+
+doctors.command(:create).call(default_doctors)
+
+puts "Created #{default_doctors.length} default doctors:"
+default_doctors.each do |doctor|
+  puts "- #{doctor[:name]} (#{doctor[:id]})"
+end
