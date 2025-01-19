@@ -18,12 +18,12 @@ module DoctorAvailability
           response.body = {
             status: 'success',
             data: {
-              id: slot.id,
-              time: slot.time,
-              doctor_id: slot.doctor_id,
-              doctor_name: slot.doctor_name,
-              is_reserved: slot.is_reserved,
-              cost: slot.cost
+              id: slot[:id],
+              time: slot[:time],
+              doctor_id: slot[:doctor_id],
+              doctor_name: slot[:doctor_name],
+              is_reserved: slot[:is_reserved],
+              cost: slot[:cost]
             }
           }.to_json
         end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "dry/types"
+require "bigdecimal"
 
 module DoctorAppointments
   module Types
@@ -11,5 +12,6 @@ module DoctorAppointments
     String = Types::String
     Bool = Types::Bool
     Integer = Types::Integer
+    Decimal = Types::Decimal
   end
 end
