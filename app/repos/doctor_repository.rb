@@ -18,6 +18,10 @@ module Repos
     def find_all
       doctors.to_a
     end
+    
+    def find_first
+      doctors.first
+    end
 
     def find(id)
       doctors.by_pk(id).one

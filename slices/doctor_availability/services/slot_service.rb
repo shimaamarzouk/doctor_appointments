@@ -14,6 +14,9 @@ module DoctorAvailability
       end
     
       def create_slot(attributes)
+        doctor_repository = Hanami.app["repos.doctor_repository"]
+        first_doctor = doctor_repository.find_first
+        attributes.merge!({doctor_id: first_doctor[:id], doctor_name: first_doctor[:name]})
         slot_repository.create(attributes)
       end
 
