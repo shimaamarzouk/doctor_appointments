@@ -9,8 +9,6 @@ module DoctorAvailability
         def handle(request, response)
           slot = slot_service.create_slot(
             time: Time.parse(request.params[:time]),
-            doctor_id: request.params[:doctor_id],
-            doctor_name: request.params[:doctor_name],
             cost: BigDecimal(request.params[:cost])
           )
 
