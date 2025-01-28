@@ -6,9 +6,14 @@ module AppointmentBooking
   module Application
     module UseCases
       class BookAppointment
-        def initialize(appointment_repository:, slot_repository:)
+        include Deps[
+          notification_controller: "notifications.notification_controller"
+        ]
+
+        def initialize(appointment_repository:, slot_repository:, notification_controller:)
           @appointment_repository = appointment_repository
           @slot_repository = slot_repository
+          @notification_controller = notification_controller
         end
 
         def call(slot_id:, patient_id:, patient_name:)
@@ -32,6 +37,13 @@ module AppointmentBooking
             @slot_repository.mark_as_reserved(slot_id)
             appointment = @appointment_repository.create(appointment_data)
           end
+
+          # Send confirmation notification
+          @notification_controller.notify_appointment_confirmation(
+            patient_name: patient_name,
+            doctor_name: slot[:doctor_name],
+            appointment_time: slot[:time]
+          )
 
           appointment
         end

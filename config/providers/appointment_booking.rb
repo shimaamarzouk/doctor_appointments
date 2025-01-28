@@ -11,15 +11,19 @@ Hanami.app.register_provider :appointment_booking do
 
   start do
     appointment_repository = AppointmentBooking::Infrastructure::Repositories::RomAppointmentRepository.new
-    slot_repository = DoctorAvailability::Repositories::SlotRepository.new  # Updated reference
+    slot_repository = DoctorAvailability::Repositories::SlotRepository.new
+    notification_controller = target["notifications.notification_controller"]
 
     register "repositories.appointment_repository", appointment_repository
-    register "repositories.slot_repository", slot_repository  # Add explicit registration
+    register "repositories.slot_repository", slot_repository
+    
     register "use_cases.book_appointment", 
       AppointmentBooking::Application::UseCases::BookAppointment.new(
         appointment_repository: appointment_repository,
-        slot_repository: slot_repository
+        slot_repository: slot_repository,
+        notification_controller: notification_controller
       )
+      
     register "use_cases.list_available_slots",
       AppointmentBooking::Application::UseCases::ListAvailableSlots.new(
         slot_repository: slot_repository
