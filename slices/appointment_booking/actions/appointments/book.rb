@@ -5,7 +5,7 @@ module AppointmentBooking
     module Appointments
       class Book < Hanami::Action
         include Deps[
-          book_appointment: "application.use_cases.book_appointment"
+          book_appointment: "appointment_booking.use_cases.book_appointment"
         ]
 
         def handle(request, response)
