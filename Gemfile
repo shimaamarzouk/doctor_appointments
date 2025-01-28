@@ -23,6 +23,8 @@ gem "sqlite3"
 
 group :development do
   gem "hanami-webconsole", "~> 2.2"
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :development, :test do
@@ -32,6 +34,7 @@ group :development, :test do
   # Web integration
   gem "capybara"
   gem "rack-test"
+  gem 'pry', '~> 0.15.0'
 end
 
 group :cli, :development do

@@ -6,9 +6,10 @@ module AppointmentBooking
   module Application
     module UseCases
       class BookAppointment
-        def initialize(appointment_repository:, slot_repository:)
+        def initialize(appointment_repository:, slot_repository:, patient_repository:)
           @appointment_repository = appointment_repository
           @slot_repository = slot_repository
+          @patient_repository = patient_repository
         end
 
         def call(slot_id:, patient_id:, patient_name:)
@@ -16,12 +17,19 @@ module AppointmentBooking
           slot = @slot_repository.find(slot_id)
           raise SlotNotAvailableError unless slot && !slot[:is_reserved]
 
+          ## get patient info from params or create a new patient
+          if patient_id.present?
+            patient = @patient_repository.find(patient_id)
+          else
+            patient = @patient_repository.create(name: patient_name)
+          end
+
           # Create appointment
           appointment_data = {
             id: SecureRandom.uuid,
             slot_id: slot_id,
-            patient_id: patient_id,
-            patient_name: patient_name,
+            patient_id: patient.id,
+            patient_name: patient.name,
             reserved_at: Time.now,
             status: 'confirmed'
           }

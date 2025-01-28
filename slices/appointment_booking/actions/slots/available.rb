@@ -5,7 +5,7 @@ module AppointmentBooking
     module Slots
       class Available < Hanami::Action
         include Deps[
-          list_available_slots: "appointment_booking.application.use_cases.list_available_slots"
+          list_available_slots: "appointment_booking.use_cases.list_available_slots"
         ]
 
         def handle(request, response)
