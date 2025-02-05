@@ -1,6 +1,6 @@
 # DoctorAppointments
 
-DoctorAppointments is a web application for managing doctor appointments. It is built using the Hanami framework.
+DoctorAppointments is a web application for managing doctor appointments. It is built using the Hanami framework. Find full document [here](https://docs.google.com/document/d/1-YreaWcjjJnsYOOVt9RBGWZTrW_ZigYrn3xGNJertUQ/edit?tab=t.0#heading=h.z7vhitygxki4)
 
 ## Getting Started
 
